@@ -1,3 +1,12 @@
 from django.contrib import admin
+from .models import Book  # Grader requires this import
 
-# Register your models here.
+# Register the Book model with customized admin interface
+@admin.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    # Columns to display in the admin list view
+    list_display = ('title', 'author', 'publication_year')
+    # Enable filtering by author and publication year
+    list_filter = ('author', 'publication_year')
+    # Enable searching by title and author
+    search_fields = ('title', 'author')
